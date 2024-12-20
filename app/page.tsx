@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Sidebar from "./components/sidebar/Sidebar";
-
+import Chat from "./components/chat/Chat";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className='homeContainer'>
       {/* sidebar */}
       <Sidebar />
-      {/* home */}
+      {/* chat */}
+      <Chat />
     </div>
   );
 }

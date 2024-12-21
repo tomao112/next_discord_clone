@@ -27,3 +27,7 @@ body {
 .homeContainer {
   display: flex;
 }
+
+.MuiSvgIcon-root {
+  cursor: pointer;
+}

@@ -2,6 +2,43 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-    background-color: #36393f; //後でhomeに移動させる
+  background-color: #36393f; //後でhomeに移動させる
 
+  .chatMessage {
+    flex-grow: 1;
+  }
+
+    .chatInput {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background-color: #474b53;
+      border-radius: 5px;
+      margin: 20px;
+      color: lightgray;
+
+      form {
+        flex-grow: 1;
+        input {
+          padding: 15px;
+          background: transparent;
+          border: none;
+          outline: none;
+          color: white;
+          font-size: large;
+          width: 100%;
+        }
+        
+        .chatInputButton {
+          display: none;
+        }
+      }
+
+      .chatinputIcons {
+        .MuiSvgIcon-root {
+          padding: 5px;
+        }
+      }
+    }
 } 

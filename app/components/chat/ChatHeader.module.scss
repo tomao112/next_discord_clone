@@ -8,13 +8,15 @@
     .chatHeaderLeft {
       padding-left: 15px;
 
-        .xhatHeaderHash {
+        .chatHeaderHash {
           color: #7b7c85;
           padding-right: 7px;
         }
 
-        .h3 {
+        h3 {
           color: white;
+          font-size: large;
+          font-weight: 800;
         }
     }
 
@@ -39,8 +41,5 @@
         color: white;
         border: none;
       }
-    }
-    .MuiSvgIcon-root {
-      cursor: pointer !important;
     }
 }

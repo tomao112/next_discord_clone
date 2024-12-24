@@ -3,6 +3,8 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { useServerInsertedHTML } from 'next/navigation';
 import { useState } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 export default function ClientLayout({
   children,
@@ -44,5 +46,9 @@ export default function ClientLayout({
     );
   });
 
-  return <CacheProvider value={cache}>{children}</CacheProvider>;
+  return (
+    <Provider store={store}>
+      <CacheProvider value={cache}>{children}</CacheProvider>
+    </Provider>
+  );
 } 

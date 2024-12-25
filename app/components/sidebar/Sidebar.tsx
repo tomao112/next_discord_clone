@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Sidebar.module.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
@@ -7,8 +7,14 @@ import MicIcon from '@mui/icons-material/Mic';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SidebarChannel from './SidebarChannel';
+import { auth, db } from '@/app/lib/firebase';
+import { useAppSelector } from '@/app/hooks';
+import useCollection from '@/app/hooks/useCollection';
 
 const Sidebar = () => {
+  const user = useAppSelector((state) => state.user);
+  const { documents: channels} = useCollection("channels");
+
   return (
     <div className={styles.sidebar}>
       {/* sidebarLeft */}
@@ -39,15 +45,17 @@ const Sidebar = () => {
           </div>
 
           <div className={styles.sidebarChannelList}>
-            <SidebarChannel />
+            {channels.map((channel) => (
+              <SidebarChannel channel={channel} id={channel.id} key={channel.id} />
+            ))}
           </div>
 
           <div className={styles.sidebarFooter}>
             <div className={styles.sidebarAccount}>
-              <img src="./blue_hamham_icon.jpg" alt="" />
+              <img src={user?.photo} alt="" onClick={() => auth.signOut()} />
               <div className={styles.accountName}>
-                <h4>toma</h4>
-                <span>#8162</span>
+                <h4>{user?.displayName}</h4>
+                <span>#{user?.uid.substring(0, 4)}</span>
               </div>
             </div>
             <div className={styles.sidebarVoice}>

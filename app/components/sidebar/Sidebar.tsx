@@ -10,10 +10,21 @@ import SidebarChannel from './SidebarChannel';
 import { auth, db } from '@/app/lib/firebase';
 import { useAppSelector } from '@/app/hooks';
 import useCollection from '@/app/hooks/useCollection';
+import { addDoc, collection } from 'firebase/firestore';
 
 const Sidebar = () => {
-  const user = useAppSelector((state) => state.user);
-  const { documents: channels} = useCollection("channels");
+  const user = useAppSelector((state) => state.user.user);
+  const { documents: channels } = useCollection("channels");
+
+  const addChannel = async () => {
+    let channelName: string | null = prompt("新しいチャンネル");
+
+    if(channelName) {
+      await addDoc(collection(db, "channels"), {
+        channelName: channelName,
+      });
+    }
+  }
 
   return (
     <div className={styles.sidebar}>
@@ -41,7 +52,7 @@ const Sidebar = () => {
               <ExpandMoreIcon />
               <h4>プログラミング</h4>
             </div>
-            <AddIcon className={styles.sidebarAddIcon}/>
+            <AddIcon className={styles.sidebarAddIcon} onClick={() => addChannel()} />
           </div>
 
           <div className={styles.sidebarChannelList}>

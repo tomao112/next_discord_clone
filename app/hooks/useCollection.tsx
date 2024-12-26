@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { onSnapshot, collection, DocumentData, query, CollectionReference, Query } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
@@ -14,9 +14,9 @@ const useCollection = (data: string) => {
   const collectionRef: Query<DocumentData> = query(collection(db, data));
 
   useEffect(() => {
-    onSnapshot(collectionRef, (QuerySnapshot) => {
+    onSnapshot(collectionRef, (querySnapshot) => {
       const channelsResults: Channels[] = [];
-      QuerySnapshot.docs.forEach((doc) => 
+      querySnapshot.docs.forEach((doc) => 
         channelsResults.push({
           id: doc.id,
           channel: doc.data(),
@@ -25,9 +25,7 @@ const useCollection = (data: string) => {
       setDocuments(channelsResults);
     });
   }, []);
-  return (
-    { documents }
-  )
+  return { documents }
 }
 
 export default useCollection

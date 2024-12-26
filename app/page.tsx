@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     auth.onAuthStateChanged((loginUser) => {
-      console.log(loginUser);
+      // console.log(loginUser);
       if(loginUser) {
         dispatch(
           login({

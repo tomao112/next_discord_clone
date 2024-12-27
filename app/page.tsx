@@ -14,22 +14,22 @@ import { ErrorFallback } from './utils/ErrorFallBack';
 
 export default function Home() {
 
-  const user = useAppSelector((state) => state.user);
-  // console.log(user);
+  const user = useAppSelector((state) => state.user.user);
+  console.log(user);
   // const user = null;
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged((loginUser) => {
+    auth.onAuthStateChanged((authUser) => {
       // console.log(loginUser);
-      if(loginUser) {
+      if(authUser) {
         dispatch(
           login({
-            uid: loginUser.uid,
-            photo: loginUser.photoURL,
-            email: loginUser.email,
-            displayName: loginUser.displayName,
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email: authUser.email,
+            displayName: authUser.displayName,
           })
         );
       } else {
@@ -42,8 +42,8 @@ export default function Home() {
     <div className='homeContainer'>
       {user ? (
         <>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Sidebar />
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Sidebar />
           </ErrorBoundary>
           <Chat />
         </>

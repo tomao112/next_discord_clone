@@ -1,18 +1,30 @@
 import React from 'react'
 import styles from './ChatMessage.module.scss';
 import { Avatar } from '@mui/material';
+import { Timestamp } from 'firebase/firestore';
 
-const ChatMessage = () => {
+type Props = {
+  timestamp: Timestamp;
+  message: string
+  user: {
+    uid: string;
+    photo: string;
+    email: string;
+    displayName: string;
+  }
+}
+const ChatMessage = (props: Props) => {
+  const { message, timestamp, user} = props
   return (
     <div className={styles.message}>
-      <Avatar />
+      <Avatar src={user?.photo}/>
       <div className={styles.messageInfo}>
         <h4>
-          toma
-          <span className={styles.messageTimeStamp}>2024/12/22</span>
+          {user?.displayName}
+          <span className={styles.messageTimeStamp}>{new Date(timestamp?.toDate()).toLocaleString()}</span>
         </h4>
 
-        <p>本文</p>
+        <p>{message}</p>
       </div>
     </div>
   )

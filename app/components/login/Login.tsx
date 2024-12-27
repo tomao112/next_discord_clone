@@ -3,6 +3,7 @@ import styles from './Login.module.scss';
 import { Button } from '@mui/material';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '@/app/lib/firebase';
+import Image from 'next/image';
 
 const Login = () => {
 
@@ -14,7 +15,7 @@ const Login = () => {
   return (
     <div className={styles.login}>
       <div className={styles.loginLogo}>
-        <img src="./blue_hamham_icon.jpg" alt="" />
+        <Image src="./blue_hamham_icon.jpg" alt="ログイン" width={500} height={300} />
       </div>
 
       <Button onClick={signIn}>ログイン</Button>

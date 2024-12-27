@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialUserState } from "../Types";
+import { InitialState } from "../Types";
 
-const initialState: InitialUserState = {
+const initialState: InitialState = {
   user: null,
+  displayName: "",
+  photo: undefined
 }
 
-export const userSlice= createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
